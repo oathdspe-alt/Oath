@@ -1,7 +1,7 @@
 import { client, urlFor } from "@/lib/sanity";
 
-export default async function CollectionPage({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+export default async function CollectionPage({ params }: any) {
+  const { slug } = await params; // 🔥 ESTE ES EL FIX
 
   const products = await client.fetch(
     `*[_type == "product" && collection->slug.current == $slug]{
