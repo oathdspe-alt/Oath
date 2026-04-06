@@ -1,44 +1,17 @@
 @import "tailwindcss";
 
 body {
-  background: #050505;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
+  background: radial-gradient(circle at top, #111 0%, #000 60%);
+  color: white;
 }
 
-/* TITULOS */
-h1, h2, h3 {
-  letter-spacing: 0.25em;
-  font-weight: 500;
-}
-
-/* EFECTO PREMIUM */
-img {
-  transition: all 0.5s ease;
-}
-
-img:hover {
-  filter: grayscale(0%);
-  transform: scale(1.03);
-}
-/* 🔥 SCROLL SUAVE */
-html {
-  scroll-behavior: smooth;
-}
-
-/* 🔥 SELECCIÓN */
-::selection {
-  background: white;
-  color: black;
-}
-
-/* 🔥 SCROLLBAR PRO */
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: white;
+/* efecto glass */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
 }

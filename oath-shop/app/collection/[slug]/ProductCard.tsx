@@ -7,10 +7,6 @@ export default function ProductCard({ product }: any) {
   const images = product.images || [];
   const [index, setIndex] = useState(0);
 
-  if (!images || images.length === 0) {
-    return <div>No hay imagen</div>;
-  }
-
   const next = () => {
     setIndex((prev) => (prev + 1 >= images.length ? 0 : prev + 1));
   };
@@ -20,53 +16,33 @@ export default function ProductCard({ product }: any) {
   };
 
   return (
-    <div className="text-center">
+    <div className="card p-4 text-center transition hover:scale-105">
 
-      {/* 🔥 CLICK EN TODA LA TARJETA */}
-      <a href={`/product/${product.slug?.current}`}>
+      <div className="relative">
+        <img
+          src={urlFor(images[index]).url()}
+          className="w-full h-[400px] object-cover rounded-xl"
+        />
 
-        <div className="relative">
-          <img
-            src={urlFor(images[index]).url()}
-            className="w-full h-[400px] object-cover"
-          />
+        {images.length > 1 && (
+          <>
+            <button onClick={prev} className="absolute left-2 top-1/2 bg-black/50 px-2">
+              ◀
+            </button>
+            <button onClick={next} className="absolute right-2 top-1/2 bg-black/50 px-2">
+              ▶
+            </button>
+          </>
+        )}
+      </div>
 
-          {images.length > 1 && (
-            <>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  prev();
-                }}
-                className="absolute left-2 top-1/2 bg-black/70 text-white px-3 py-1"
-              >
-                ◀
-              </button>
+      <h2 className="mt-4 text-lg tracking-wide">{product.name}</h2>
+      <p className="text-gray-400">S/ {product.price}</p>
 
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  next();
-                }}
-                className="absolute right-2 top-1/2 bg-black/70 text-white px-3 py-1"
-              >
-                ▶
-              </button>
-            </>
-          )}
-        </div>
-
-      </a>
-
-      {/* INFO */}
-      <h2 className="mt-3">{product.name}</h2>
-      <p>S/ {product.price}</p>
-
-      {/* 🔥 BOTÓN COMPRAR */}
       <a
         href={`https://wa.me/51993764834?text=Hola quiero ${product.name}`}
         target="_blank"
-        className="inline-block mt-3 bg-white text-black px-4 py-2"
+        className="inline-block mt-3 border border-white px-4 py-2 hover:bg-white hover:text-black transition"
       >
         Comprar
       </a>
