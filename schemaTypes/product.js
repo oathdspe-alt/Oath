@@ -13,8 +13,7 @@ export default {
       title: 'URL',
       type: 'slug',
       options: {
-        source: 'name',
-        maxLength: 96
+        source: 'name'
       }
     },
     {
