@@ -1,18 +1,16 @@
 import { client, urlFor } from "@/lib/sanity";
 
-export default async function ProductPage({ params }: { params: { slug: string } }) {
-
-  const slug = params.slug; // 🔥 FIX CLAVE
+export default async function ProductPage({ params }: any) {
+  const slug = params.slug;
 
   const product = await client.fetch(
-    `*[_type == "product" && _id == $id][0]{
-      _id,
+    `*[_type == "product" && slug.current == $slug][0]{
       name,
       price,
       description,
       images
     }`,
-    { id: slug }
+    { slug }
   );
 
   if (!product) {
@@ -23,8 +21,6 @@ export default async function ProductPage({ params }: { params: { slug: string }
     );
   }
 
-  const images = product.images || [];
-
   return (
     <main className="bg-black text-white min-h-screen p-10">
 
@@ -32,17 +28,12 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
       <div className="grid md:grid-cols-2 gap-10">
 
-        {/* IMAGEN */}
-        <div>
-          <img
-            src={urlFor(images[0]).url()}
-            className="w-full h-[500px] object-cover"
-          />
-        </div>
+        <img
+          src={urlFor(product.images[0]).url()}
+          className="w-full h-[500px] object-cover"
+        />
 
-        {/* INFO */}
         <div className="flex flex-col justify-center">
-
           <h2 className="text-2xl mb-4">{product.name}</h2>
 
           <p className="text-gray-400 mb-6">
@@ -60,7 +51,6 @@ export default async function ProductPage({ params }: { params: { slug: string }
           >
             Comprar
           </a>
-
         </div>
 
       </div>

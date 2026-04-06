@@ -23,7 +23,7 @@ export default function ProductCard({ product }: any) {
     <div className="text-center">
 
       {/* 🔥 CLICK EN TODA LA TARJETA */}
-      <a href={`/product/${product._id}`}>
+      <a href={`/product/${product.slug?.current}`}>
 
         <div className="relative">
           <img
