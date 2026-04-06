@@ -16,7 +16,7 @@ export default function ProductCard({ product }: any) {
   };
 
   return (
-    <div className="card p-4 text-center transition hover:scale-105">
+    <div className="card p-4 text-center fade-in hover:scale-105 hover:shadow-2xl">
 
       <div className="relative">
         <img
@@ -42,7 +42,7 @@ export default function ProductCard({ product }: any) {
       <a
         href={`https://wa.me/51993764834?text=Hola quiero ${product.name}`}
         target="_blank"
-        className="inline-block mt-3 border border-white px-4 py-2 hover:bg-white hover:text-black transition"
+        className="inline-block mt-3 border border-white px-4 py-2 hover:bg-white hover:text-black transition duration-300"
       >
         Comprar
       </a>

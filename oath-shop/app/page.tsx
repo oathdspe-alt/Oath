@@ -12,7 +12,7 @@ export default async function Home() {
           <a
             key={col._id}
             href={`/collection/${col.slug?.current}`}
-            className="relative group overflow-hidden rounded-xl"
+            className="relative group overflow-hidden rounded-xl fade-in"
           >
 
             {/* IMAGEN */}
