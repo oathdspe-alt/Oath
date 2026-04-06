@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 
 export default async function Home() {
   const collections = await client.fetch(`*[_type == "collection"]`);
@@ -12,11 +12,24 @@ export default async function Home() {
           <a
             key={col._id}
             href={`/collection/${col.slug?.current}`}
-            className="card p-10 text-center hover:scale-105 transition"
+            className="relative group overflow-hidden rounded-xl"
           >
-            <h2 className="text-xl tracking-wide">
-              {col.title}
-            </h2>
+
+            {/* IMAGEN */}
+            {col.image && (
+              <img
+                src={urlFor(col.image).url()}
+                className="w-full h-[300px] object-cover group-hover:scale-110 transition duration-500"
+              />
+            )}
+
+            {/* OVERLAY */}
+            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+              <h2 className="text-2xl tracking-[5px]">
+                {col.title}
+              </h2>
+            </div>
+
           </a>
         ))}
 

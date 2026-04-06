@@ -5,17 +5,14 @@ export default {
   fields: [
     {
       name: 'title',
-      title: 'Nombre de la Colección',
+      title: 'Nombre',
       type: 'string'
     },
     {
       name: 'slug',
-      title: 'URL (Slug)',
+      title: 'URL',
       type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      }
+      options: { source: 'title' }
     },
     {
       name: 'image',
