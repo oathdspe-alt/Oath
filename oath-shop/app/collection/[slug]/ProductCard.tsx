@@ -7,7 +7,7 @@ export default function ProductCard({ product }: any) {
   const images = product.images || [];
   const [index, setIndex] = useState(0);
 
-  if (images.length === 0) return null;
+  if (!images.length) return null;
 
   const nextImage = () => {
     setIndex((prev) => (prev + 1 >= images.length ? 0 : prev + 1));
@@ -22,13 +22,11 @@ export default function ProductCard({ product }: any) {
 
       {/* 🔥 IMAGEN */}
       <div className="relative overflow-hidden">
-
         <img
           src={urlFor(images[index]).url()}
           className="w-full h-[400px] object-cover transition duration-500 group-hover:scale-105"
         />
 
-        {/* 🔥 FLECHAS */}
         {images.length > 1 && (
           <>
             <button
@@ -51,8 +49,8 @@ export default function ProductCard({ product }: any) {
       {/* 🔥 INFO */}
       <div className="mt-5 text-center">
 
-        {/* 👉 CLICK PARA IR A PRODUCTO */}
-        <a href={`/product/${product.slug?.current}`}>
+        {/* 👉 CLICK AL PRODUCTO */}
+        <a href={`/product/${product._id}`}>
           <h2 className="text-sm tracking-[0.2em] hover:opacity-60 transition">
             {product.name}
           </h2>

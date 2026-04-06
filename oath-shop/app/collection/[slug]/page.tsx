@@ -15,13 +15,13 @@ export default async function CollectionPage({ params }: any) {
   );
 
   return (
-    <main className="bg-[#050505] text-white min-h-screen px-6 md:px-20 pb-20">
+    <main className="bg-black text-white min-h-screen px-6 md:px-20 py-10">
 
-      <h2 className="text-xl text-center mb-16 uppercase tracking-[0.3em] text-gray-500">
-        {slug}
-      </h2>
+      <h1 className="text-4xl text-center mb-16 tracking-[0.5em]">
+        OATH
+      </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {products.map((p: any) => (
           <ProductCard key={p._id} product={p} />
         ))}
