@@ -2,12 +2,8 @@ import { client, urlFor } from "@/lib/sanity";
 
 export default async function CollectionPage({ params }: any) {
 
-  // 🔥 FIX SEGURO
-  const slug = params?.slug;
-
-  if (!slug) {
-    return <div>Error: slug no encontrado</div>;
-  }
+  // 🔥 FIX REAL (Next.js 16)
+  const { slug } = await params;
 
   const products = await client.fetch(
     `*[_type == "product" && collection->slug.current == $slug]{
