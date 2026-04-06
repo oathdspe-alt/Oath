@@ -1,8 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import { client, urlFor } from "@/lib/sanity";
 
 export default async function CollectionPage({ params }: any) {
 
-  // 🔥 FIX REAL (Next.js 16)
   const { slug } = await params;
 
   const products = await client.fetch(
@@ -19,34 +21,71 @@ export default async function CollectionPage({ params }: any) {
     <main className="bg-[#050505] text-white min-h-screen p-10">
       <h1 className="text-3xl mb-10 uppercase tracking-widest">{slug}</h1>
 
-      {products.length === 0 ? (
-        <p>No hay productos en esta colección</p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {products.map((p: any) => (
-            <div key={p._id} className="border border-white/10 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {products.map((p: any) => (
+          <ProductCard key={p._id} product={p} />
+        ))}
+      </div>
+    </main>
+  );
+}
 
-              {p.images?.[0] && (
-                <img
-                  src={urlFor(p.images[0]).url()}
-                  className="w-full h-[300px] object-cover"
-                />
-              )}
+// 🔥 COMPONENTE CON SLIDER
+function ProductCard({ product }: any) {
+  const [index, setIndex] = useState(0);
 
-              <h2 className="text-xl mt-4">{p.name}</h2>
-              <p className="text-gray-400">S/ {p.price}</p>
+  const images = product.images || [];
 
-              <a
-                href={`https://wa.me/51993764834?text=Hola quiero ${p.name}`}
-                target="_blank"
-                className="block mt-4 bg-white text-black text-center py-2"
+  const nextImage = () => {
+    setIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="border border-white/10 p-4">
+
+      {images.length > 0 && (
+        <div className="relative">
+
+          <img
+            src={urlFor(images[index]).url()}
+            className="w-full h-[300px] object-cover"
+          />
+
+          {/* BOTONES */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 px-2 py-1"
               >
-                Comprar
-              </a>
-            </div>
-          ))}
+                ◀
+              </button>
+
+              <button
+                onClick={nextImage}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 px-2 py-1"
+              >
+                ▶
+              </button>
+            </>
+          )}
         </div>
       )}
-    </main>
+
+      <h2 className="text-xl mt-4">{product.name}</h2>
+      <p className="text-gray-400">S/ {product.price}</p>
+
+      <a
+        href={`https://wa.me/51993764834?text=Hola quiero ${product.name}`}
+        target="_blank"
+        className="block mt-4 bg-white text-black text-center py-2 hover:opacity-80 transition"
+      >
+        Comprar
+      </a>
+    </div>
   );
 }
