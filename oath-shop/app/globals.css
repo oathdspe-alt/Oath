@@ -23,3 +23,22 @@ img:hover {
   filter: grayscale(0%);
   transform: scale(1.03);
 }
+/* 🔥 SCROLL SUAVE */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 🔥 SELECCIÓN */
+::selection {
+  background: white;
+  color: black;
+}
+
+/* 🔥 SCROLLBAR PRO */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+}
