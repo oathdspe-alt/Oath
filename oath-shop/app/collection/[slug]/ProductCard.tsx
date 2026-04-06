@@ -4,15 +4,25 @@ import { useState } from "react";
 import { urlFor } from "@/lib/sanity";
 
 export default function ProductCard({ product }: any) {
-  const [index, setIndex] = useState(0);
   const images = product.images || [];
+  const [index, setIndex] = useState(0);
+
+  if (images.length === 0) {
+    return <div>No image</div>;
+  }
 
   const nextImage = () => {
-    setIndex((prev) => (prev + 1) % images.length);
+    setIndex((prev) => {
+      if (prev + 1 >= images.length) return 0;
+      return prev + 1;
+    });
   };
 
   const prevImage = () => {
-    setIndex((prev) => (prev - 1 + images.length) % images.length);
+    setIndex((prev) => {
+      if (prev - 1 < 0) return images.length - 1;
+      return prev - 1;
+    });
   };
 
   return (
@@ -20,20 +30,17 @@ export default function ProductCard({ product }: any) {
 
       <div className="relative overflow-hidden">
 
-        {images.length > 0 && (
-          <img
-            src={urlFor(images[index]).url()}
-            className="w-full h-[400px] object-cover transition duration-700 group-hover:scale-110"
-          />
-        )}
+        <img
+          src={urlFor(images[index]).url()}
+          className="w-full h-[400px] object-cover transition duration-500 group-hover:scale-105"
+        />
 
         {images.length > 1 && (
           <>
             <button
               onClick={prevImage}
               className="absolute left-3 top-1/2 -translate-y-1/2 
-              opacity-0 group-hover:opacity-100 transition 
-              bg-black/50 px-3 py-1"
+              bg-black/60 px-3 py-1 text-white"
             >
               ◀
             </button>
@@ -41,8 +48,7 @@ export default function ProductCard({ product }: any) {
             <button
               onClick={nextImage}
               className="absolute right-3 top-1/2 -translate-y-1/2 
-              opacity-0 group-hover:opacity-100 transition 
-              bg-black/50 px-3 py-1"
+              bg-black/60 px-3 py-1 text-white"
             >
               ▶
             </button>
