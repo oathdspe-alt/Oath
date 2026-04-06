@@ -52,7 +52,7 @@ export default function ProductCard({ product }: any) {
       <div className="mt-5 text-center">
 
         {/* 👉 CLICK PARA IR A PRODUCTO */}
-        <a href={`/product/${product._id}`}>
+        <a href={`/product/${product.slug?.current}`}>
           <h2 className="text-sm tracking-[0.2em] hover:opacity-60 transition">
             {product.name}
           </h2>

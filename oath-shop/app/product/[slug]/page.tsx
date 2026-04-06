@@ -9,20 +9,17 @@ export default function ProductPage({ params }: any) {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      try {
-        const data = await client.fetch(
-          `*[_type == "product" && _id == $id][0]{
-            name,
-            price,
-            description,
-            images
-          }`,
-          { id: params.slug }
-        );
-        setProduct(data);
-      } catch (err) {
-        console.error(err);
-      }
+      const data = await client.fetch(
+        `*[_type == "product" && slug.current == $slug][0]{
+          name,
+          price,
+          description,
+          images
+        }`,
+        { slug: params.slug }
+      );
+
+      setProduct(data);
     };
 
     fetchProduct();
@@ -59,7 +56,9 @@ export default function ProductPage({ params }: any) {
                 key={i}
                 src={urlFor(img).url()}
                 onClick={() => setIndex(i)}
-                className="w-20 h-20 object-cover cursor-pointer"
+                className={`w-20 h-20 object-cover cursor-pointer border ${
+                  i === index ? "border-white" : "border-transparent"
+                }`}
               />
             ))}
           </div>
@@ -82,7 +81,8 @@ export default function ProductPage({ params }: any) {
           <a
             href={`https://wa.me/51993764834?text=Hola quiero ${product.name}`}
             target="_blank"
-            className="border border-white text-center py-3 tracking-[0.3em]"
+            className="border border-white text-center py-3 tracking-[0.3em]
+            hover:bg-white hover:text-black transition"
           >
             COMPRAR
           </a>
