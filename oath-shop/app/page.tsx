@@ -6,6 +6,12 @@ export default async function Home() {
   return (
     <main className="p-10">
 
+      {/* 🔥 TÍTULO */}
+      <h1 className="text-center text-3xl mb-12 tracking-[10px] fade-in">
+        COLECCIONES
+      </h1>
+
+      {/* 🔥 GRID */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
         {collections.map((col: any) => (

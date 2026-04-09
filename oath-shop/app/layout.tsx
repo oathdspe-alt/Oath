@@ -7,7 +7,7 @@ export default function RootLayout({ children }: any) {
 
         {/* HEADER */}
         <div className="sticky top-0 z-50 backdrop-blur-md bg-black/40 border-b border-white/10">
-          <div className="text-center py-5 text-3xl tracking-[12px] font-light">
+          <div className="text-center py-5 text-3xl tracking-[12px] font-light animate-logo">
             OATH
           </div>
         </div>

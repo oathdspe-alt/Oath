@@ -20,8 +20,9 @@ export default function ProductCard({ product }: any) {
 
       <div className="relative">
         <img
+          key={index}
           src={urlFor(images[index]).url()}
-          className="w-full h-[400px] object-cover rounded-xl"
+          className="w-full h-[400px] object-cover rounded-xl transition-opacity duration-500 opacity-0 animate-img"
         />
 
         {images.length > 1 && (
