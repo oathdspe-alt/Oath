@@ -43,7 +43,7 @@ export default function ProductCard({ product }: any) {
       <a
         href={`https://wa.me/51993764834?text=Hola quiero ${product.name}`}
         target="_blank"
-        className="inline-block mt-3 border border-white px-4 py-2 hover:bg-white hover:text-black transition duration-300"
+        className="inline-block mt-3 border border-white px-4 py-2 hover:bg-white hover:text-black transition duration-300 hover:scale-105"
       >
         Comprar
       </a>

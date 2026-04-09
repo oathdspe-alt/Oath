@@ -13,7 +13,7 @@ export default function RootLayout({ children }: any) {
         </div>
 
         {/* 🔥 ANIMACIÓN DE PÁGINA */}
-        <div className="fade-in">
+        <div key={Math.random()} className="page-transition">
           {children}
         </div>
 

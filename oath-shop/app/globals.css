@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* 🔥 BASE */
+/* 🔥 BASE + FONDO STREETWEAR */
 body {
   margin: 0;
   padding: 0;
@@ -9,26 +9,26 @@ body {
   min-height: 100vh;
 
   background:
-    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
-    url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1974&auto=format&fit=crop");
+    linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.96)),
+    url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1974&auto=format&fit=crop");
 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
-/* 🔥 EFECTO CINEMÁTICO */
+/* 🔥 EFECTO PROFUNDO */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6));
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.7));
   pointer-events: none;
 }
 
-/* 🔥 TARJETAS (CARDS) */
+/* 🔥 TARJETAS PRO */
 .card {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 12px;
@@ -39,7 +39,7 @@ body::after {
   transform: scale(1.05);
 }
 
-/* 🔥 ANIMACIÓN FADE */
+/* 🔥 ANIMACIONES */
 .fade-in {
   animation: fadeIn 0.8s ease-in-out;
 }
@@ -55,20 +55,7 @@ body::after {
   }
 }
 
-/* 🔥 IMÁGENES */
-img {
-  transition: all 0.4s ease;
-}
-
-img:hover {
-  transform: scale(1.03);
-}
-
-/* 🔥 LINKS */
-a {
-  transition: all 0.3s ease;
-}
-/* 🔥 ANIMACIÓN LOGO */
+/* 🔥 LOGO */
 .animate-logo {
   animation: logoFade 1.5s ease-in-out;
 }
@@ -83,16 +70,47 @@ a {
     letter-spacing: 12px;
   }
 }
+
 /* 🔥 TRANSICIÓN IMÁGENES */
 .animate-img {
   animation: fadeImg 0.5s ease-in-out forwards;
 }
 
 @keyframes fadeImg {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 🔥 HOVER */
+img {
+  transition: all 0.4s ease;
+}
+
+img:hover {
+  transform: scale(1.03);
+}
+
+a {
+  transition: all 0.3s ease;
+}
+/* 🔥 TRANSICIÓN ENTRE PÁGINAS */
+.page-transition {
+  animation: pageIn 0.6s ease;
+}
+
+@keyframes pageIn {
   from {
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
+}
+html {
+  scroll-behavior: smooth;
+}
+.card:hover {
+  box-shadow: 0 10px 30px rgba(255,255,255,0.1);
 }
