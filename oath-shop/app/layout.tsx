@@ -1,3 +1,10 @@
+export const metadata = {
+  title: "OATH",
+  description: "Streetwear Brand",
+  icons: {
+    icon: "/favicon.png",
+  },
+};
 import "./globals.css";
 
 export default function RootLayout({ children }: any) {
